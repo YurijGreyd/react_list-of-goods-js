@@ -15,10 +15,11 @@ export const goodsFromServer = [
   'Jam',
   'Garlic',
 ];
+
 const SORT_BY_ALPHABET = 'alphabetically';
 const SORT_BY_LENGTH = 'length';
 
-function getPreparedGoods(goods, { sortField, reversed }) {
+function prepareGoods(goods, { sortField, reversed }) {
   let preparedGoods = [...goods];
 
   if (sortField) {
@@ -46,10 +47,12 @@ function getPreparedGoods(goods, { sortField, reversed }) {
 export const App = () => {
   const [sortField, setSortField] = useState('');
   const [reversed, setReversed] = useState(false);
-  const visibleGoods = getPreparedGoods(goodsFromServer, {
+
+  const visibleGoods = prepareGoods(goodsFromServer, {
     sortField,
     reversed,
   });
+
   const isChanged = !visibleGoods.every(
     (good, i) => good === goodsFromServer[i],
   );
